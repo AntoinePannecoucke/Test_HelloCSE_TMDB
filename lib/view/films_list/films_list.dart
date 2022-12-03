@@ -7,9 +7,12 @@ class FilmsList extends StatefulWidget {
 
   final MainPageViewModel viewModel;
 
+  final Function() refresh;
+
   const FilmsList({
     super.key,
-    required this.viewModel
+    required this.viewModel,
+    required this.refresh
   });
 
   @override
@@ -30,7 +33,7 @@ class _FilmsListState extends State<FilmsList> {
               itemBuilder: (context, index) {
                 return Padding(
                     padding: const EdgeInsets.all(5.0),
-                    child: FilmListItem(film: snapshot.data![index], favoriteToggle: widget.viewModel,)
+                    child: FilmListItem(film: snapshot.data![index], favoriteToggle: widget.viewModel,refresh: widget.refresh,)
                 );
               });
         }

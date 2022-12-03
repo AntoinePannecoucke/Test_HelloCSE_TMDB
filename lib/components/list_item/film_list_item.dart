@@ -8,10 +8,13 @@ class FilmListItem extends StatefulWidget {
   final FavoriteToggle favoriteToggle;
   final Film film;
 
+  final Function() refresh;
+
   const FilmListItem({
     super.key,
     required this.film,
-    required this.favoriteToggle
+    required this.favoriteToggle,
+    required this.refresh
   });
 
   @override
@@ -20,10 +23,14 @@ class FilmListItem extends StatefulWidget {
 }
 
 class _FilmListItemState extends State<FilmListItem> {
+
   bool isToggle = false;
+
+
 
   Future loadToggle() async {
     isToggle = await widget.favoriteToggle.isFavorite(widget.film);
+    widget.refresh();
   }
 
   @override
@@ -59,9 +66,7 @@ class _FilmListItemState extends State<FilmListItem> {
                                 onPressed: () async {
                                   await widget.favoriteToggle.toggle(widget.film);
                                   isToggle = !isToggle;
-                                  setState(() {
-
-                                  });
+                                  widget.refresh();
                                 }
                                 , icon: isToggle ? const Icon(Icons.favorite) : const Icon(Icons.favorite_border_rounded),
                                 color: Colors.red,
