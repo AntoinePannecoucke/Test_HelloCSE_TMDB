@@ -5,9 +5,9 @@ import 'package:test_technique_hellocse/model/film.dart';
 
 @injectable
 class ToggleFavoriteUseCase {
-  static Future<void> invoke(bool toggle, Film film) async {
+  Future<void> invoke(bool toggle, Film film) async {
     return toggle ?
-    getItLocator<AbstrFilmRepository>().removeFavoriteFilm(film.id) :
+    getItLocator<AbstrFilmRepository>().removeFavoriteFilm("${film.id}") :
     getItLocator<AbstrFilmRepository>().insertFavoriteFilm(film);
   }
 }

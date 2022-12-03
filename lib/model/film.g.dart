@@ -11,7 +11,7 @@ Film _$FilmFromJson(Map<String, dynamic> json) => $checkedCreate(
       json,
       ($checkedConvert) {
         final val = Film(
-          id: $checkedConvert('id', (v) => v as String),
+          id: $checkedConvert('id', (v) => v as int),
           title: $checkedConvert('title', (v) => v as String),
           poster: $checkedConvert('poster_path', (v) => v as String?),
           overview: $checkedConvert('overview', (v) => v as String),

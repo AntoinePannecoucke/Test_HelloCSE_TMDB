@@ -30,6 +30,8 @@ import 'package:test_technique_hellocse/domain/usecase/film/get_now_playing_usec
 import 'package:test_technique_hellocse/domain/usecase/film/is_favorite_usecase.dart'
     as _i13;
 import 'package:test_technique_hellocse/domain/usecase/film/toggle_favorite_usecase.dart'
+    as _i15;
+import 'package:test_technique_hellocse/view/main/main_page_viewmodel.dart'
     as _i14;
 
 /// ignore_for_file: unnecessary_lambdas
@@ -53,7 +55,8 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i10.AbstrFilmRepository>(_i11.FilmRepository());
     gh.factory<_i12.GetNowPlayingUseCase>(() => _i12.GetNowPlayingUseCase());
     gh.factory<_i13.IsFavoriteUseCase>(() => _i13.IsFavoriteUseCase());
-    gh.factory<_i14.ToggleFavoriteUseCase>(() => _i14.ToggleFavoriteUseCase());
+    gh.factory<_i14.MainPageViewModel>(() => _i14.MainPageViewModel());
+    gh.factory<_i15.ToggleFavoriteUseCase>(() => _i15.ToggleFavoriteUseCase());
     return this;
   }
 }
