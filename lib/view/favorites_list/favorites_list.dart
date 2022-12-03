@@ -36,7 +36,7 @@ class _FavoritesListState extends State<FavoritesList> {
                   );
                 });
           }
-          return const Center(child: Text("Aucun film"));
+          return const Center(child: CircularProgressIndicator(),);
         }
     );
   }

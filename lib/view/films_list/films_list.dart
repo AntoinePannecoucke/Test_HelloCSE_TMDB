@@ -37,7 +37,7 @@ class _FilmsListState extends State<FilmsList> {
                 );
               });
         }
-        return const Center(child: Text("Aucun film"));
+        return const Center(child: CircularProgressIndicator(),);
       }
     );
   }
