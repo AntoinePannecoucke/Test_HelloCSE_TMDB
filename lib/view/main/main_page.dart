@@ -66,8 +66,16 @@ class _MainPageState extends State<MainPage> {
         controller: viewModel.pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          FilmsList(viewModel: viewModel),
-          FavoritesList(viewModel: viewModel)
+          FilmsList(viewModel: viewModel, refresh: () {
+            setState(() {
+
+            });
+          }),
+          FavoritesList(viewModel: viewModel, refresh: () {
+            setState(() {
+
+            });
+          })
         ],
       ),
     );

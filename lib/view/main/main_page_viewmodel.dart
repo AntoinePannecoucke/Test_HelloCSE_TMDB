@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:test_technique_hellocse/core/get_it/get_it.dart';
 import 'package:test_technique_hellocse/core/mixin/favorite_toggle_mixin.dart';
-import 'package:test_technique_hellocse/data/repository/film/film_repository.dart';
+import 'package:test_technique_hellocse/domain/usecase/film/get_favorites_usecase.dart';
 import 'package:test_technique_hellocse/domain/usecase/film/get_now_playing_usecase.dart';
 import 'package:test_technique_hellocse/domain/usecase/film/is_favorite_usecase.dart';
 import 'package:test_technique_hellocse/domain/usecase/film/toggle_favorite_usecase.dart';
@@ -29,5 +29,8 @@ class MainPageViewModel implements FavoriteToggle {
   @override
   Future<bool> isFavorite(Film film) async =>
       await getItLocator<IsFavoriteUseCase>().invoke("${film.id}");
+
+  Future<List<Film>> getFavorites() async =>
+      await getItLocator<GetFavoritesUseCase>().invoke();
 
 }
