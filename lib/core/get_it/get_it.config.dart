@@ -9,6 +9,10 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:test_technique_hellocse/core/manager/database_manager.dart'
     as _i3;
+import 'package:test_technique_hellocse/data/source/dio/dio_film_source.dart'
+    as _i4;
+import 'package:test_technique_hellocse/data/source/sembast/sembast_film_source.dart'
+    as _i5;
 
 /// ignore_for_file: unnecessary_lambdas
 /// ignore_for_file: lines_longer_than_80_chars
@@ -24,6 +28,8 @@ extension GetItInjectableX on _i1.GetIt {
       environmentFilter,
     );
     gh.singleton<_i3.DatabaseManager>(_i3.DatabaseManager());
+    gh.singleton<_i4.DioFilmSource>(_i4.DioFilmSource());
+    gh.singleton<_i5.SembastSourceFilm>(_i5.SembastSourceFilm());
     return this;
   }
 }
