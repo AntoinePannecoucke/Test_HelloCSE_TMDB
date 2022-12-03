@@ -1,55 +1,79 @@
 import 'package:flutter/material.dart';
+import 'package:test_technique_hellocse/core/mixin/favorite_toggle_mixin.dart';
 import 'package:test_technique_hellocse/model/film.dart';
+import 'package:test_technique_hellocse/view/favorites_list/favorites_list.dart';
 
-class FilmListItem extends StatelessWidget {
+class FilmListItem extends StatefulWidget {
 
+  final FavoriteToggle favoriteToggle;
   final Film film;
 
   const FilmListItem({
     super.key,
-    required this.film
+    required this.film,
+    required this.favoriteToggle
   });
 
   @override
+  State<StatefulWidget> createState() => _FilmListItemState();
+
+}
+
+class _FilmListItemState extends State<FilmListItem> {
+  bool isToggle = false;
+
+  Future loadToggle() async {
+    isToggle = await widget.favoriteToggle.isFavorite(widget.film);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    loadToggle();
+
     return Card(
-      child: Container(
+      child: SizedBox(
         height: 150,
         child: Row(
           children: [
             Expanded(
               flex: 3,
-              child: Image.network("https://image.tmdb.org/t/p/w500${film.poster}"),
+              child: Image.network("https://image.tmdb.org/t/p/w500${widget.film.poster}"),
             ),
             Expanded(
-              flex: 8,
+                flex: 8,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    child: Column(
-                      children: [
-                        Container(
-                          child: Row(
-                            children: [
-                              Expanded(
-                                  flex: 5,
-                                  child: ListTile(
-                                    title: Text(film.title, maxLines: 2),
-                                    subtitle: Text(film.release),
-                                  )
-                              ),
-                              Expanded(
-                                  child: IconButton(onPressed: () => {}, icon: const Icon(Icons.favorite_border_rounded),)
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                              flex: 5,
+                              child: ListTile(
+                                title: Text(widget.film.title, maxLines: 2),
+                                subtitle: Text(widget.film.release),
                               )
-                            ],
                           ),
-                        ),
-                        Expanded(
-                            flex: 5,
-                          child: Text(film.overview, maxLines: 3, overflow: TextOverflow.ellipsis)
-                        )
-                      ],
-                    ),
+                          Expanded(
+                              child: IconButton(
+                                onPressed: () async {
+                                  await widget.favoriteToggle.toggle(widget.film);
+                                  isToggle = !isToggle;
+                                  setState(() {
+
+                                  });
+                                }
+                                , icon: isToggle ? const Icon(Icons.favorite) : const Icon(Icons.favorite_border_rounded),
+                                color: Colors.red,
+                              )
+                          )
+                        ],
+                      ),
+                      Expanded(
+                          flex: 5,
+                          child: Text(widget.film.overview, maxLines: 3, overflow: TextOverflow.ellipsis)
+                      )
+                    ],
                   ),
                 )
             )
@@ -58,5 +82,4 @@ class FilmListItem extends StatelessWidget {
       ),
     );
   }
-
 }

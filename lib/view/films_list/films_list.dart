@@ -29,8 +29,8 @@ class _FilmsListState extends State<FilmsList> {
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 return Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: FilmListItem(film: snapshot.data![index])
+                    padding: const EdgeInsets.all(5.0),
+                    child: FilmListItem(film: snapshot.data![index], favoriteToggle: widget.viewModel,)
                 );
               });
         }
