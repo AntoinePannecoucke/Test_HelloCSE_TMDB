@@ -4,7 +4,7 @@ import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 import 'package:test_technique_hellocse/model/film.dart';
 
-@singleton
+@Singleton(order: -4)
 class DatabaseManager {
   static const _favoritesStore = "favorites-store";
   static DatabaseManager instance = DatabaseManager._internal();

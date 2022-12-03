@@ -5,7 +5,7 @@ import 'package:test_technique_hellocse/data/datasource/film/sembast/abstr_semba
 import 'package:test_technique_hellocse/data/repository/film/abstr_film_repository.dart';
 import 'package:test_technique_hellocse/model/film.dart';
 
-@Singleton(as: AbstrFilmRepository)
+@Singleton(as: AbstrFilmRepository, order: -1)
 class FilmRepository implements AbstrFilmRepository {
   @override
   Future<List<Film>> getFavoriteFilms() async =>

@@ -4,7 +4,7 @@ import 'package:test_technique_hellocse/core/get_it/get_it.dart';
 import 'package:test_technique_hellocse/core/manager/database_manager.dart';
 import 'package:test_technique_hellocse/model/film.dart';
 
-@singleton
+@Singleton(order: -3)
 class SembastFilmSource {
 
   final DatabaseManager _databaseManager =  getItLocator<DatabaseManager>();

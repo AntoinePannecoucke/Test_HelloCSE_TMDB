@@ -4,7 +4,7 @@ import 'package:test_technique_hellocse/data/datasource/film/sembast/abstr_semba
 import 'package:test_technique_hellocse/data/source/film/sembast/sembast_film_source.dart';
 import 'package:test_technique_hellocse/model/film.dart';
 
-@Singleton(as: AbstrSembastFilmDatasource)
+@Singleton(as: AbstrSembastFilmDatasource, order: -2)
 class SembastFilmDatasource implements AbstrSembastFilmDatasource {
 
   @override

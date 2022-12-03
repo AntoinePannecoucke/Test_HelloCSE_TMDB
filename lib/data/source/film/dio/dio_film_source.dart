@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:test_technique_hellocse/core/Interceptor/auth_interceptor.dart';
 
-@singleton
+@Singleton(order: -3)
 class DioFilmSource {
 
   late Dio dio;

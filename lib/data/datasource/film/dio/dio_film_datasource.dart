@@ -6,7 +6,7 @@ import 'package:test_technique_hellocse/data/source/film/dio/dio_film_source.dar
 import 'package:test_technique_hellocse/model/film.dart';
 import 'package:test_technique_hellocse/model/film_response.dart';
 
-@Singleton(as: AbstrDioFilmDatasource)
+@Singleton(as: AbstrDioFilmDatasource, order: -2)
 class DioFilmDatasource implements AbstrDioFilmDatasource {
 
   @override
