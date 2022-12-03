@@ -21,7 +21,7 @@ class App extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MainPage(title: 'Flutter Demo Home Page'),
+      home: const MainPage(title: 'HelloCSE Test Technique'),
     );
   }
 }

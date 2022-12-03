@@ -4,7 +4,7 @@ import 'package:test_technique_hellocse/data/repository/film/abstr_film_reposito
 
 @injectable
 class IsFavoriteUseCase {
-  static Future<bool> invoke(String idFilm) async {
+  Future<bool> invoke(String idFilm) async {
     return await getItLocator<AbstrFilmRepository>().isFavorite(idFilm);
   }
 }

@@ -4,7 +4,7 @@ part 'film.g.dart';
 
 @JsonSerializable(checked: true, explicitToJson: true, fieldRename: FieldRename.snake)
 class Film {
-  String id;
+  int id;
   String title;
   @JsonKey(name : "poster_path")
   String? poster;

@@ -5,7 +5,7 @@ import 'package:test_technique_hellocse/model/film.dart';
 
 @injectable
 class GetNowPlayingUseCase {
-  static Future<List<Film>> invoke() async {
+  Future<List<Film>> invoke() async {
     return await getItLocator<AbstrFilmRepository>().getNowPlaying();
   }
 }

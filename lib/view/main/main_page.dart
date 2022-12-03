@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:test_technique_hellocse/core/get_it/get_it.dart';
+import 'package:test_technique_hellocse/view/favorites_list/favorites_list.dart';
+import 'package:test_technique_hellocse/view/films_list/films_list.dart';
+import 'package:test_technique_hellocse/view/main/main_page_viewmodel.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key, required this.title});
@@ -19,18 +23,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  final MainPageViewModel viewModel = getItLocator<MainPageViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,41 +40,36 @@ class _MainPageState extends State<MainPage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+
+        bottomNavigationBar: BottomNavigationBar(
+          items: const[
+            BottomNavigationBarItem(
+              label: "Films",
+              icon: Icon(Icons.movie_outlined),
+              activeIcon: Icon(Icons.movie, color: Colors.blue)
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            BottomNavigationBarItem(
+              label: "Favorites",
+              icon: Icon(Icons.favorite_border_outlined),
+              activeIcon: Icon(Icons.favorite, color: Colors.blue)
             ),
           ],
+          currentIndex: viewModel.currentPageIndex,
+          onTap: (newIndex) {
+            viewModel.goToPage(newIndex);
+            setState(() {
+
+            });
+          },
         ),
+      body: PageView(
+        controller: viewModel.pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: [
+          FilmsList(viewModel: viewModel),
+          FavoritesList(viewModel: viewModel)
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
