@@ -5,20 +5,20 @@ import 'package:test_technique_hellocse/core/manager/database_manager.dart';
 import 'package:test_technique_hellocse/model/film.dart';
 
 @singleton
-class SembastSourceFilm {
+class SembastFilmSource {
 
-  DatabaseManager databaseManager =  getItLocator<DatabaseManager>();
+  final DatabaseManager _databaseManager =  getItLocator<DatabaseManager>();
 
   Future<void> insertFavoriteFilm(Film film) async =>
-      await databaseManager.db.transaction((transaction) async =>
-      await databaseManager.favoritesStore.record(film.id).put(transaction, film.toJson()));
+      await _databaseManager.db.transaction((transaction) async =>
+      await _databaseManager.favoritesStore.record(film.id).put(transaction, film.toJson()));
 
   Future<void> removeFavoriteFilm(String idFilm) async =>
-      await databaseManager.favoritesStore.record(idFilm).delete(databaseManager.db);
+      await _databaseManager.favoritesStore.record(idFilm).delete(_databaseManager.db);
 
   Future<bool> isFavorite(String idFilm) async =>
-      await databaseManager.favoritesStore.record(idFilm).exists(databaseManager.db);
+      await _databaseManager.favoritesStore.record(idFilm).exists(_databaseManager.db);
 
   Future<List<RecordSnapshot<String, Map<String, dynamic>>>> getFavoriteFilms() async =>
-      await databaseManager.favoritesStore.find(databaseManager.db);
+      await _databaseManager.favoritesStore.find(_databaseManager.db);
 }
